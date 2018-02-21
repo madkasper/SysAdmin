@@ -5,8 +5,8 @@
 # Per default, ssh-backup will copy all files in the
 # working dir to a remote host using scp tool. 
 #
-# Checksuming and e-mail notificatin can be turned 
-# on if desired. 
+# Checksuming and e-mail notification can be turned 
+# on optionally. 
 # 
 # For usage and option description execute:
 # ssh-backup.sh -h
@@ -160,7 +160,7 @@ elif [ "&CHECKSUM" ] && [ "$LF_VAL" ] ; then
 	# Needs modification, only checksum specified file
 	$FIND $PWD -type f -exec md5 {} + > "$DATE"Checksums.md5""
 fi
-# Execute file upload, redirect stdin & stderr to transfer log 
+# Execute file upload, redirect stdin & err to transfer log 
 if [ "$LF_VAL" = 0 ] ; then
 	$SCP -v -i $IDENTITY_FILE $PWD/*.* $REMOTE_USER$REMOTE_SERVER 2>&1 | $GREP 'Transferred' > "$DATE"Transfer_Log.txt""
 elif [ "$LF_VAL" ] ; then
